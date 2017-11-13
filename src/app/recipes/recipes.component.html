@@ -4,11 +4,15 @@
     (recipeWasSelected)="recipeSelectParent = $event"
     ></app-recipes-list>
   </div>
+  
+  
+  
+  
   <div class="col-md-7">
+  
+  
     <app-recipes-detail
-
-    *ngIf="recipeSelectParent; else infoText"
-   [recipeDetail]="recipeSelectParent">
+    *ngIf="recipeSelectParent; else infoText" [recipeDetail]="recipeSelectParent">
 
   </app-recipes-detail>
 
