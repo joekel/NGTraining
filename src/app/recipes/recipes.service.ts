@@ -47,6 +47,10 @@ export class RecipeService {
   getRecipes() {
     return this.recipesgroup.slice();
   }
+
+  getRecipe(index: number) {
+    return this.recipesgroup.slice()[index];
+  }
   onSelected() {
 
   }

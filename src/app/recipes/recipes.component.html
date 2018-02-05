@@ -8,7 +8,7 @@
   
   <div class="col-md-7">
   
-  
+  <!-- 
     <app-recipes-detail
     *ngIf="recipeSelectParent; else infoText" [recipeDetail]="recipeSelectParent">
 
@@ -17,5 +17,7 @@
     <ng-template #infoText>
       <p> Please select a recipe! </p>
     </ng-template>
-  </div>
+  </div> -->
+  
+  <router-outlet></router-outlet>
 </div>
