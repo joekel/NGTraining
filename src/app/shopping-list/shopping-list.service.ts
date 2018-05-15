@@ -13,6 +13,9 @@ export class ShoppingListService {
   
   ingerdientsChanged = new Subject<Ingredient[]>();
   
+  // subject listen to listen to edit component
+   startedEditing = new Subject<number>();
+  
   private ingredients: Ingredient[] = [
     new Ingredient('apple', 5),
     new Ingredient('tommato', 54),
@@ -21,6 +24,10 @@ export class ShoppingListService {
 
   getIngerdients() {
     return this.ingredients.slice();
+  }
+  
+  getIngredtient(index: number){
+  return this.ingredients[index];
   }
 
   addIngredient(ingredient: Ingredient) {
@@ -36,4 +43,19 @@ export class ShoppingListService {
     this.ingredients.push(...ingredients);
     this.ingerdientsChanged.next(this.ingredients.slice());
   }
+  
+  updateIngredient(index: number , newIngredient: Ingredient){
+   //real life secanrio we update database
+    this.ingredients[index] = newIngredient;
+    this.ingerdientsChanged.next(this.ingredients.slice());
+  }
+  
+  
+   deleteIngredient(index: number ){
+   //real life secanrio we update database
+    this.ingredients.splice(index,1);
+     this.ingerdientsChanged.next(this.ingredients.slice());
+  }
+  
+  
 }

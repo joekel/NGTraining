@@ -4,12 +4,15 @@ import {Ingredient} from '../shared/ingtrdients.model';
 import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {Recipe} from './recipe.model';
 import {EventEmitter, Injectable} from '@angular/core';
+import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class RecipeService {
 
   // recipeSelected = new EventEmitter<Recipe>();
 
+  
+  recioesChanges = new Subject<Recipe[]>();
   private recipesgroup: Recipe[] = [
     new Recipe(
       'Book Jaber 01',
@@ -57,6 +60,22 @@ export class RecipeService {
 
   addIngredientToShoppingList(ingredis: Ingredient[]) {
     this.slService.addinIngredients(ingredis);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipesgroup.push(recipe);
+    this.recioesChanges.next(this.recipesgroup.slice());
+
+  }
+
+  updateRecipe(index: number ,newrecipe: Recipe) {
+  this.recipesgroup[index] = newrecipe;
+  }
+
+  
+  deleteRecipe(index: number ){
+    this.recipesgroup.splice(index,1);
+     this.recioesChanges.next(this.recipesgroup.slice())
   }
 
 }
